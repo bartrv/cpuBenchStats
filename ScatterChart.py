@@ -94,15 +94,15 @@ RyzenListY = [x["price"] for x in cpuData if x["name"][4:9]=="Ryzen"]
 
 #output data table sizes
 print("Data Table sizes:")
-print("total CPU's: "+len(cpuData))
-print("        AMD:"+ len(AMD__PerfListX))
-print("       EPYC:"+ len(EPYCListX))
-print("      Ryzen:"+ len(RyzenListX))
-print("      Intel:"+ len(IntelPerfListX))
-print("       Xeon:"+ len(XeonListX))
-print("       Core:"+ len(CoreListX))
-print("      Apple:"+ len(ApplePerfListX))
-print("        ARM:"+ len(ARM__PerfListX))
+print("total CPU's:", len(cpuData))
+print("        AMD:", len(AMD__PerfListX))
+print("       EPYC:", len(EPYCListX))
+print("      Ryzen:", len(RyzenListX))
+print("      Intel:", len(IntelPerfListX))
+print("       Xeon:", len(XeonListX))
+print("       Core:", len(CoreListX))
+print("      Apple:", len(ApplePerfListX))
+print("        ARM:", len(ARM__PerfListX))
 
 # https://matplotlib.org/stable/gallery/mplot3d/wire3d.html
 

@@ -10,13 +10,24 @@ Created on Wed Feb  8 11:15:29 2023
 import re
 from copy import copy as cp
 from matplotlib import pyplot as plt
+from urllib.request import urlopen 
 
+#Using local file
+"""
 dataFileString = "H:/eLearning/python3/cpuBenchmark.net/HighEndCPU_20230208.txt"
-
 with open(dataFileString) as file:
     data = file.read()
+"""
 
-data = [n for n in data.split("\n") if 'p(event,' in n]
+#Using URL
+web_cpuHighEnd = "https://www.cpubenchmark.net/high_end_cpus.html"
+
+with urlopen(web_cpuHighEnd) as response:
+    data = response.read()
+    data = data.decode('utf-8')
+
+data = data.split("\n")
+data = [n for n in data if 'p(event,' in n]
 #<li id="pk5088"><span class="more_details" onclick="p(event, '124,119', 1, 1, 96, 2, '$11,805.00*', null, null);"></span><a href="cpu.php?cpu=AMD+EPYC+9654&amp;id=5088"><span class="prdname">AMD EPYC 9654</span><div><span class="index pink" style="width: 34.5%">(34.5%)</span></div><span class="count">10.5</span><span class="mark-neww">124,119</span><span class="price-neww">$11,805.00*</span></a></li>
 cpuData = []
 
@@ -80,10 +91,19 @@ CoreListX = [x["score"] for x in cpuData if x["name"][6:10]=="Core"]
 CoreListY = [x["price"] for x in cpuData if x["name"][6:10]=="Core"]
 RyzenListX = [x["score"] for x in cpuData if x["name"][4:9]=="Ryzen"]
 RyzenListY = [x["price"] for x in cpuData if x["name"][4:9]=="Ryzen"]
-"""
-x = range(100)
-y = range(100,200)
-"""
+
+#output data table sizes
+print("Data Table sizes:")
+print("total CPU's: "+len(cpuData))
+print("        AMD:"+ len(AMD__PerfListX))
+print("       EPYC:"+ len(EPYCListX))
+print("      Ryzen:"+ len(RyzenListX))
+print("      Intel:"+ len(IntelPerfListX))
+print("       Xeon:"+ len(XeonListX))
+print("       Core:"+ len(CoreListX))
+print("      Apple:"+ len(ApplePerfListX))
+print("        ARM:"+ len(ARM__PerfListX))
+
 # https://matplotlib.org/stable/gallery/mplot3d/wire3d.html
 
 fig = plt.figure()
